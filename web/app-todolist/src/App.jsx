@@ -8,7 +8,7 @@ function App() {
   const [servicios, setServicios] = useState([])
 
   useEffect(()=> {
-    fetch('http://localhost:1234/')
+    fetch('https://elpajaro.vercel.app/')
     .then(res => res.json())
     .then(data => {
         setServicios(data)

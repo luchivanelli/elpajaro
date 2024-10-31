@@ -16,6 +16,16 @@ const pool = mysql2.createPool({
   queueLimit: 0
 });
 
+// const pool = mysql2.createPool({
+//   host: 'localhost',
+//   database: 'todolist',
+//   user: 'root',
+//   password: 'root',
+//   waitForConnections: true,
+//   connectionLimit: 10, // Ajusta según tu necesidad
+//   queueLimit: 0
+// });
+
 const PORT = process.env.PORT ?? 1234;
 
 const app = express();
