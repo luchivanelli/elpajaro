@@ -6,12 +6,13 @@ import { validateService, validatePartialService } from './schema/service.js';
 
 // Crear un pool de conexiones
 const pool = mysql2.createPool({
-  host: 'localhost',
-  database: 'todolist',
-  user: 'root',
-  password: 'root',
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
   waitForConnections: true,
-  connectionLimit: 10, // Ajusta según tu necesidad
+  connectionLimit: 10,
   queueLimit: 0
 });
 
