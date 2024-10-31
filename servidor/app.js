@@ -40,7 +40,8 @@ app.use(
         'http://localhost:8080',
         'http://localhost:1234',
         'http://127.0.0.1:5500',
-        "http://localhost:5173"
+        "http://localhost:5173",
+        "https://elpajaro.vercel.app"
       ];
 
       if (ACCEPTED_ORIGINS.includes(origin)) {
