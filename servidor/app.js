@@ -1,7 +1,7 @@
 import express from 'express';
-import data from './data.json' with { type: 'json' };
 import cors from 'cors';
 import mysql2 from 'mysql2';
+import path from 'path';
 import { validateService, validatePartialService } from './schema/service.js';
 
 // Crear un pool de conexiones
@@ -31,8 +31,7 @@ const PORT = process.env.PORT ?? 1234;
 const app = express();
 app.disable('x-powered-by');
 
-// app.use(express.json());
-app.use(express.static('web'));
+app.use(express.json());
 
 app.use(
   cors({
@@ -44,21 +43,25 @@ app.use(
         "http://localhost:5173",
         "https://elpajaro.vercel.app"
       ];
-
+      
       if (ACCEPTED_ORIGINS.includes(origin)) {
         return callback(null, true);
       }
-
+      
       if (!origin) {
         return callback(null, true);
       }
-
+      
       return callback(new Error('Not allowed by CORS'));
     },
   })
 );
 
-app.get('/', (req, res) => {
+const __dirname = path.resolve();
+
+app.use(express.static(path.join(__dirname, 'web')));
+
+app.get('/api/', (req, res) => {
   pool.query('SELECT * FROM servicios', (error, respuesta) => {
     if (error) {
       return res.status(500).json({ error: 'Error en la consulta' });
@@ -67,14 +70,14 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/:id', (req, res) => {
+app.get('/api/:id', (req, res) => {
   const { id } = req.params;
   const service = data.find((service) => service.id == id);
   if (service) return res.json(service);
   res.status(404).json({ message: 'Service not found' });
 });
 
-app.post('/', (req, res) => {
+app.post('/api/', (req, res) => {
   const result = validateService(req.body);
 
   if (!result.success) {
@@ -112,7 +115,7 @@ app.post('/', (req, res) => {
   });
 });
 
-app.patch('/:id', (req, res) => {
+app.patch('/api/:id', (req, res) => {
   const result = validateService(req.body);
 
   if (!result.success) {
@@ -161,7 +164,7 @@ app.patch('/:id', (req, res) => {
   });
 });
 
-app.delete('/:id', (req, res) => {
+app.delete('/api/:id', (req, res) => {
   const { id } = req.params; // Obtenemos el id de los parámetros
 
   // Consulta SQL para eliminar el servicio
