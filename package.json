@@ -9,9 +9,9 @@
   "scripts": {
   "start": "concurrently \"npm run server\" \"npm run client\"",
   "server": "cd servidor && npm run dev",
-  "client": "cd servidor/web/app-todolist && npm run dev",
-  "client:build": "cd servidor/web/app-todolist && npm run build",
-  "build": "npm run client:build && npm run server"
+  "client": "cd web && npm run dev",
+  "client:build": "cd web && npm run build",
+  "build": "npm run client:build"
 },
   "author": "",
   "license": "ISC"
