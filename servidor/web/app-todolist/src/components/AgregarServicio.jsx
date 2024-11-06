@@ -46,7 +46,7 @@ export const AgregarServicio = ()=> {
         } else {
             setMessage('')
 
-            fetch('https://elpajaro.vercel.app/', {
+            fetch('/api/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
