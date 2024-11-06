@@ -2,13 +2,12 @@
   "version": 2,
   "builds": [
     { "src": "servidor/app.js", "use": "@vercel/node" },
-    { "src": "servidor/web/**/*", "use": "@vercel/static" }
+    { "src": "servidor/web/app-todolist/**/*", "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "servidor/app.js" },
-    { "src": "/(.*)", "dest": "servidor/web/$1" }
+    { "src": "/(.*)", "dest": "servidor/web/app-todolist/$1" }
   ]
 }
-
 
   
