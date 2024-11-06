@@ -167,3 +167,9 @@ EditarServicio.propTypes = {
     }).isRequired,
 };
 
+
+
+{/* <form action="/" method="post" style="display:flex; gap:10px;">
+  <input type="email" id="email" name="email" placeholder="Email Address" style="border:1px solid black; border-radius:30px; color: black">
+  <input type="submit" value="Subscribe">
+</form> */}
