@@ -1,4 +1,4 @@
-import express from 'express';
+/*import express from 'express';
 import cors from 'cors';
 import mysql2 from 'mysql2';
 import path from 'path';
@@ -204,3 +204,4 @@ process.on('SIGINT', () => {
 app.listen(PORT, () => {
   console.log(`server listening on port http://localhost:${PORT}`);
 });
+*/
