@@ -57,7 +57,7 @@ app.use(
   })
 );
 
-app.get('https://elpajaro.vercel.app/', (req, res) => {
+app.get('/', (req, res) => {
   pool.query('SELECT * FROM servicios', (error, respuesta) => {
     if (error) {
       return res.status(500).json({ error: 'Error en la consulta' });
@@ -66,14 +66,14 @@ app.get('https://elpajaro.vercel.app/', (req, res) => {
   });
 });
 
-app.get('https://elpajaro.vercel.app/:id', (req, res) => {
+app.get('/:id', (req, res) => {
   const { id } = req.params;
   const service = data.find((service) => service.id == id);
   if (service) return res.json(service);
   res.status(404).json({ message: 'Service not found' });
 });
 
-app.post('https://elpajaro.vercel.app/', (req, res) => {
+app.post('/', (req, res) => {
   const result = validateService(req.body);
 
   if (!result.success) {
@@ -111,7 +111,7 @@ app.post('https://elpajaro.vercel.app/', (req, res) => {
   });
 });
 
-app.patch('https://elpajaro.vercel.app/:id', (req, res) => {
+app.patch('/:id', (req, res) => {
   const result = validateService(req.body);
 
   if (!result.success) {
@@ -160,7 +160,7 @@ app.patch('https://elpajaro.vercel.app/:id', (req, res) => {
   });
 });
 
-app.delete('https://elpajaro.vercel.app/:id', (req, res) => {
+app.delete('/:id', (req, res) => {
   const { id } = req.params; // Obtenemos el id de los parámetros
 
   // Consulta SQL para eliminar el servicio
